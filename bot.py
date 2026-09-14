@@ -37,4 +37,4 @@ async def emoji(ctx):
     resultado = random.choice(emojis)
     await ctx.send(resultado)
 
-bot.run("Meu Token")
+bot.run("Token Aqui!")
