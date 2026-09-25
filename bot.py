@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 import random
+import os
+import requests
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -21,6 +23,8 @@ async def commands(ctx):
 😂 `$heh N` → Dá risada conforme o número de vezes solicitado
 😀 `$emoji` → Gera um emoji aleatório
 💬 `$phrases` → Exibe uma frase para te fazer refletir
+🐶 `$dog` → Exibe um doguinho aleatório
+🐍 `$python` → Exibe memes relacionados a programação
 ❓ `$commands` → Exibe a lista de comandos
 ''')
 
@@ -60,5 +64,25 @@ async def phrases(ctx):
     phrases = ["Seja a sua melhor versão!", "Você não precisa provar nada para quem torce contra você.", "O silêncio também é resposta. Nem tudo merece uma explicação.", "Viva a vida, não sabemos o dia de amanhã!", "Quem conhece o próprio valor, jamais implora por validação.", "A vida é feita de escolhas, e cada escolha tem uma consequência.", "Não desista, grandes coisas levam tempo.", "Acredite em você e tudo será possível.", "A felicidade não é um destino, é uma jornada.", "O sucesso é a soma de pequenos esforços repetidos dia após dia.", "Se seu jardim não está crescendo, é porque toda vez que uma flor nasce, você a arranca para mostrar aos outros que é um jardineiro."]
     resultado = random.choice(phrases)
     await ctx.send(resultado)
+
+@bot.command()
+async def python(ctx):
+    imagens = os.listdir('images')
+    imagem = random.choice(imagens)
+    with open('images/' + imagem, 'rb') as f:
+        picture = discord.File(f)
+
+    await ctx.send(file = picture)
+
+def get_dog_image_url():    
+    url = 'https://random.dog/woof.json'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.command()
+async def dog(ctx):
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
 
 bot.run("Token Aqui!")
