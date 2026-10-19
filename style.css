@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+body {
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    background-color: #5988FF;
+    color: hwb(0 99% 1%);
+}
+
+h1 {
+    color: lch(97.58% 0.01 296.81);
+    font-size: 24px;
+    font-family: Inter, sans-serif;
+}
+
+h2 {
+    font-family: Inter, sans-serif;
+}
+
+img {
+    border: 2px solid #FD98FB;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1:hover { animation: color-change 3s infinite; }
+
+@keyframes color-change {
+  0%   { color: hsl(240, 100%, 100%); }
+  25%  { color: #FD98FB; }
+  50%  { color: hsl(0, 94%, 59%); }
+  100% { color: hsl(119, 100%, 50%); }
+}
