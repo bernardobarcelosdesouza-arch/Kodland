@@ -1,36 +1,55 @@
-from flask import Flask, request
-import random
+# Importações
+from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return '<h1>Hello, World!</h1>'
+def result_calculate(size, lights, device):
+    """Calcula o consumo estimado com base na área, número de luminárias e aparelhos.
 
-@app.route("/random_fact")
-def random_fact():
-    facts = [
-    "Polvos têm três corações e sangue azulado!",
-    "Existem mais estrelas no universo observável do que grãos de areia em muitas estimativas de todas as praias da Terra.",
-    "O mel, quando armazenado corretamente, pode permanecer conservado por milhares de anos.",
-    "Um raio pode aquecer o ar ao seu redor a temperaturas superiores às da superfície do Sol!",
-    "Tubarões existem há mais tempo que as árvores: seus ancestrais surgiram há mais de 400 milhões de anos."
-    ]
+    Args:
+        size (int): Tamanho (área) da residência
+        lights (int): Quantidade de luminárias
+        device (int): Quantidade de aparelhos
 
-    return f'<h1>Random Fact</h1><p>{random.choice(facts)}</p>'
+    Returns:
+        float: Consumo estimado
+    """
+    # Coeficientes usados no cálculo do consumo de energia
+    home_coef = 100
+    light_coef = 0.04
+    devices_coef = 5
+    return size * home_coef + lights * light_coef + device * devices_coef
 
+# A primeira página
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route("/secret")
-def secret():
-    caracteres = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+# A segunda página
+@app.route('/<size>')
+def lights(size):
+    return render_template(
+                            'lights.html', 
+                            size=size
+                           )
 
-    comprimento = int(request.args.get("comprimento", 8))
+# A terceira página
+@app.route('/<size>/<lights>')
+def electronics(size, lights):
+    return render_template(
+                            'electronics.html',
+                            size = size, 
+                            lights = lights                           
+                           )
 
-    senha = ""
-
-    for i in range(comprimento):
-        senha += random.choice(caracteres)
-
-    return "Senha gerada: " + senha
-
+# Cálculo
+@app.route('/<size>/<lights>/<device>')
+def end(size, lights, device):
+    return render_template('end.html', 
+                            result=result_calculate(int(size),
+                                                    int(lights), 
+                                                    int(device)
+                                                    )
+                        )
 app.run(debug=True)

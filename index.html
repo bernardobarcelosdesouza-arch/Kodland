@@ -1,21 +1,48 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <title>Dependência Tecnológica: Redes sociais e aplicativos de mensagem</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  >
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <title>Calculadora de eficiência energética para casas inteligentes</title>
 </head>
 <body>
-    <h1>Dependência Tecnológica: Redes sociais e aplicativos de mensagem</h1>
-    <p>Com a tecnologia cada vez mais presente em nosso cotidiano, as pessoas podem passar tempo demais em redes sociais e aplicativos de mensagem, reduzindo o tempo que dedicam ao mundo real.</p>
-    <h2>Principais Consequências</h2>
-             <ul>
-                   <li>Isolamento social — a pessoa pode passar menos tempo interagindo pessoalmente com familiares e amigos.</li>
-                   <li>Falta de sono — o uso excessivo de dispositivos eletrônicos pode afetar a qualidade do sono, prejudicando a saúde física e mental.</li>
-                   <li>Ansiedade e estresse — a necessidade de verificar constantemente mensagens, notificações e notícias pode gerar preocupação e tensão.</li>
-                    
-             </ul>
-     <img src="https://fastcompanybrasil.com/wp-content/uploads/2023/11/crianca_adolescente_vicio_celular_Freepik.jpg" 
-     alt="Dependência tecnológica" width="325" height="225"> 
-     <iframe src="https://www.meteoblue.com/pt/tempo/widget/daily/santo-ant%c3%b4nio-da-patrulha_brasil_3449614?geoloc=fixed&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&days=7&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&windgust=0&winddirection=0&uv=0&humidity=0&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=dark&user_key=8633f2e444e4ccd0&embed_key=1cd765f9794a48d4&sig=ebb49d7c775dcecbbc07d33ad930a9a759381bc5cc049f45f39bd83246c4e401" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 378px;height: 349px;border: 0;overflow: hidden;"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" rel="noopener">meteoblue</a></div>
+  <header class="header">
+    <div class="header__text">
+      <h1>Calcule a eficiência energética da sua casa!</h1>
+      <p>Seja proativo e resolva o problema do consumo excessivo de energia</p>
+    </div>
+  </header>
+  <main>
+    {% block content %}
+    <h2 class="main__title">Selecione o tamanho da sua casa:</h2>
+    <ul class="list">
+      <li class="list__item">
+        <a href="{{ '/1' }}">
+        <img class="item__img" src="../static/img/home.svg" alt="home">
+        <span>Uma casa pequena</span></a>
+      </li>
+      <!-- Assignment #1 -->
+      <li class="list__item">
+        <a href="{{ '/2'}}">
+        <img class="item__img" src="/static/img/home.svg" alt="home">
+        <span>Uma casa média</span></a>
+      </li>
+      <li class="list__item">
+        <a href="{{ '/3' }}">
+        <img class="item__img" src="/static/img/home.svg" alt="home">
+        <span>Uma casa grande</span></a>
+      <!--  -->
+      </li>
+    </ul>
+    {% endblock %}
+  </main>
+  <footer>
+
+  </footer>
 </body>
-</html> 
+</html>
